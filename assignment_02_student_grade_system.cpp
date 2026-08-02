@@ -46,11 +46,9 @@
 #include <iostream>
 using namespace std;
 
-// Function to determine the grade based on the score
 char getGrade(int score) {
-    // Validate the score range first
     if (score < 0 || score > 100) {
-        return '\0'; // Return null character for invalid scores
+        return '\0'; 
     } 
     else if (score >= 80) {
         return 'A';
@@ -75,10 +73,8 @@ int main() {
     cout << "Enter student score (0-100): ";
     cin >> score;
     
-    // Call the function and store the result
     char grade = getGrade(score);
     
-    // Check if the function returned the error flag
     if (grade == '\0') {
         cout << "Error: Score must be between 0 and 100." << endl;
     } else {

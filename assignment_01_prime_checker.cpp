@@ -37,14 +37,11 @@
 #include <iostream>
 using namespace std;
 
-// Function to check if a number is prime
 bool isPrime(int n) {
-    // Numbers less than 2 are NOT prime
     if (n < 2) {
         return false;
     }
     
-    // Check for divisors
     for (int i = 2; i * i <= n; i++) {
         if (n % i == 0) {
             return false;

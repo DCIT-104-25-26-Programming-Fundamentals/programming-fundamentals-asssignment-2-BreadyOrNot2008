@@ -57,9 +57,6 @@
 #include <iostream>
 using namespace std;
 
-// =============================================================================
-// PART A — Single Table
-// =============================================================================
 void printSingleTable(int num) {
     cout << "Multiplication Table for " << num << ":" << endl;
     for (int i = 1; i <= 12; i++) {
@@ -67,51 +64,37 @@ void printSingleTable(int num) {
     }
 }
 
-// =============================================================================
-// PART B — Bonus: Tables from 1 to N
-// =============================================================================
 void printTablesUpToN(int n) {
     for (int i = 1; i <= n; i++) {
-        // We can reuse the function from Part A here!
         printSingleTable(i);
         
-        // Print the separator line (except after the very last table)
         if (i < n) {
             cout << "---------------------------" << endl;
         }
     }
 }
 
-// =============================================================================
-// MAIN FUNCTION
-// =============================================================================
 int main() {
     int numA, n;
 
-    // ---------------------------------------------------------
-    // PART A TEST
-    // ---------------------------------------------------------
     cout << "--- PART A ---" << endl;
     cout << "Enter a number: ";
     cin >> numA;
 
     if (numA <= 0) {
         cout << "Error: You must enter a positive integer." << endl;
-        return 0; // Stop execution
+        return 0; 
     }
 
     printSingleTable(numA);
 
-    // ---------------------------------------------------------
-    // PART B TEST
-    // ---------------------------------------------------------
     cout << "\n--- PART B ---" << endl;
     cout << "Enter a number N to print tables from 1 to N: ";
     cin >> n;
 
     if (n <= 0) {
         cout << "Error: N must be a positive integer." << endl;
-        return 0; // Stop execution
+        return 0; 
     }
 
     printTablesUpToN(n);

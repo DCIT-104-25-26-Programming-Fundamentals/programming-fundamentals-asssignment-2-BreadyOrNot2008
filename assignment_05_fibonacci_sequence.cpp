@@ -51,9 +51,6 @@
 #include <iostream>
 using namespace std;
 
-// =============================================================================
-// PART A — Print the First N Terms
-// =============================================================================
 void printFibonacci(int n) {
     if (n <= 0) {
         cout << "Error: N must be a positive integer." << endl;
@@ -65,32 +62,24 @@ void printFibonacci(int n) {
     int a = 0;
     int b = 1;
     
-    // Print the first term
     if (n >= 1) {
         cout << a;
     }
-    // Print the second term
     if (n >= 2) {
         cout << " " << b;
     }
     
-    // Calculate and print the remaining terms using a loop
     for (int i = 3; i <= n; i++) {
         int nextTerm = a + b;
         cout << " " << nextTerm;
         
-        // Shift values for the next iteration
         a = b;
         b = nextTerm;
     }
     cout << endl;
 }
 
-// =============================================================================
-// PART B — Check if a Number Belongs to the Sequence
-// =============================================================================
 bool isFibonacci(int target) {
-    // Fibonacci numbers in this standard sequence are never negative
     if (target < 0) {
         return false;
     }
@@ -98,32 +87,25 @@ bool isFibonacci(int target) {
     int a = 0;
     int b = 1;
     
-    // Check if the target is one of the starting numbers
     if (target == a || target == b) {
         return true;
     }
     
     int nextTerm = a + b;
     
-    // Loop until we either find the target or exceed it
     while (nextTerm <= target) {
         if (nextTerm == target) {
             return true;
         }
         
-        // Shift values forward
         a = b;
         b = nextTerm;
         nextTerm = a + b;
     }
     
-    // If the loop finishes and we exceeded the target without matching it
     return false;
 }
 
-// =============================================================================
-// MAIN FUNCTION
-// =============================================================================
 int main() {
     int n, numToCheck;
     
@@ -131,14 +113,12 @@ int main() {
     cout << "How many terms? ";
     cin >> n;
     
-    // Call function for Part A
     printFibonacci(n);
     
     cout << "\n--- PART B ---" << endl;
     cout << "Enter a number to check: ";
     cin >> numToCheck;
     
-    // Call function for Part B
     if (isFibonacci(numToCheck)) {
         cout << numToCheck << " is a Fibonacci number." << endl;
     } else {

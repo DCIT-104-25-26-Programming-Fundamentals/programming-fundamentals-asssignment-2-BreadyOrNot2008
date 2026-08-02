@@ -80,7 +80,6 @@
 #include <string>
 using namespace std;
 
-// Function to display the menu
 void showMenu() {
     cout << "\n============================" << endl;
     cout << "       TO-DO LIST MENU" << endl;
@@ -92,12 +91,10 @@ void showMenu() {
     cout << "Enter your choice (1-4): ";
 }
 
-// Function to add a new task
 void addTask(vector<string>& tasks) {
     string taskName;
     cout << "Enter task: ";
     
-    // Clear the leftover newline character before reading text
     cin.ignore(10000, '\n');
     getline(cin, taskName); 
     
@@ -105,7 +102,6 @@ void addTask(vector<string>& tasks) {
     cout << "Task added: \"" << taskName << "\"" << endl;
 }
 
-// Function to view all tasks
 void viewTasks(const vector<string>& tasks) {
     if (tasks.empty()) {
         cout << "Your to-do list is currently empty." << endl;
@@ -118,7 +114,6 @@ void viewTasks(const vector<string>& tasks) {
     }
 }
 
-// Function to delete a task
 void deleteTask(vector<string>& tasks) {
     if (tasks.empty()) {
         cout << "No tasks to delete. Your list is already empty." << endl;
@@ -131,7 +126,6 @@ void deleteTask(vector<string>& tasks) {
     cout << "\nEnter task number to delete: ";
     cin >> taskNum;
     
-    // Check if the input is within the valid range of tasks
     if (taskNum >= 1 && taskNum <= tasks.size()) {
         string removedTask = tasks[taskNum - 1]; 
         tasks.erase(tasks.begin() + taskNum - 1);
@@ -149,7 +143,6 @@ int main() {
         showMenu();
         cin >> choice;
         
-        // Handle case where user types a letter instead of a number
         if (cin.fail()) {
             cin.clear(); 
             cin.ignore(10000, '\n'); 
@@ -157,9 +150,8 @@ int main() {
             continue; 
         }
         
-        cout << endl; // Blank line to match expected formatting
+        cout << endl;
         
-        // Process menu selection
         if (choice == 1) {
             addTask(tasks);
         } 

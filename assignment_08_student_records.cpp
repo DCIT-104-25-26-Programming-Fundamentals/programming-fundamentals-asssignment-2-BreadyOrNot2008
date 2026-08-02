@@ -83,20 +83,13 @@
 #include <iomanip>
 using namespace std;
 
-// -----------------------------------------------------------------------------
-// STRUCT DEFINITION
-// -----------------------------------------------------------------------------
 struct Student {
     string name;
     int id;
     vector<double> scores;
 };
 
-// -----------------------------------------------------------------------------
-// HELPER FUNCTIONS
-// -----------------------------------------------------------------------------
 
-// Reusable function to calculate the average of a vector of scores
 double getAverage(const vector<double>& scores) {
     if (scores.empty()) return 0.0;
     
@@ -107,7 +100,6 @@ double getAverage(const vector<double>& scores) {
     return sum / scores.size();
 }
 
-// Function to display the main menu
 void showMenu() {
     cout << "\n================================" << endl;
     cout << "   STUDENT RECORD SYSTEM MENU" << endl;
@@ -119,17 +111,12 @@ void showMenu() {
     cout << "Enter your choice (1-4): ";
 }
 
-// -----------------------------------------------------------------------------
-// FEATURE FUNCTIONS
-// -----------------------------------------------------------------------------
 
-// 1. Add a Student
 void addStudent(vector<Student>& students) {
     Student newStudent;
     int numScores;
     double score;
 
-    // Clear the leftover newline from the previous cin before reading the string
     cin.ignore(10000, '\n');
     
     cout << "Student name: ";
@@ -151,7 +138,6 @@ void addStudent(vector<Student>& students) {
     cout << "Student \"" << newStudent.name << "\" added successfully." << endl;
 }
 
-// 2. Display All Students
 void displayStudents(const vector<Student>& students) {
     if (students.empty()) {
         cout << "No students have been added yet." << endl;
@@ -168,13 +154,11 @@ void displayStudents(const vector<Student>& students) {
             cout << students[i].scores[j] << " ";
         }
         
-        // Print average rounded to 2 decimal places
         cout << "| Average: " << fixed << setprecision(2) 
              << getAverage(students[i].scores) << endl;
     }
 }
 
-// 3. Calculate Average Score for a Specific Student
 void calculateSpecificAverage(const vector<Student>& students) {
     if (students.empty()) {
         cout << "No students have been added yet." << endl;
@@ -185,22 +169,18 @@ void calculateSpecificAverage(const vector<Student>& students) {
     cout << "Enter student ID: ";
     cin >> searchId;
     
-    // Search the vector for the matching ID
     for (size_t i = 0; i < students.size(); i++) {
         if (students[i].id == searchId) {
             cout << students[i].name << "'s average score: " 
                  << fixed << setprecision(2) << getAverage(students[i].scores) << endl;
-            return; // Exit the function since we found the student
+            return;
         }
     }
     
-    // If the loop finishes without returning, the ID wasn't found
     cout << "Error: Student ID " << searchId << " not found." << endl;
 }
 
-// -----------------------------------------------------------------------------
-// MAIN FUNCTION
-// -----------------------------------------------------------------------------
+
 int main() {
     vector<Student> students;
     int choice = 0;
@@ -209,7 +189,6 @@ int main() {
         showMenu();
         cin >> choice;
         
-        // Handle invalid character input (like typing a letter instead of a number)
         if (cin.fail()) {
             cin.clear();
             cin.ignore(10000, '\n');
@@ -217,7 +196,7 @@ int main() {
             continue;
         }
         
-        cout << endl; // Formatting space
+        cout << endl; 
         
         if (choice == 1) {
             addStudent(students);

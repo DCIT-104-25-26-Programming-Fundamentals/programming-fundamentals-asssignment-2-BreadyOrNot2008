@@ -73,10 +73,6 @@
 #include <cmath>
 using namespace std;
 
-// -----------------------------------------------------------------------------
-// ARITHMETIC FUNCTIONS
-// -----------------------------------------------------------------------------
-
 double addNumbers(double a, double b) {
     return a + b;
 }
@@ -93,7 +89,6 @@ double divideNumbers(double a, double b) {
     return a / b;
 }
 
-// Note: Modulus requires integer operands in C++
 int calculateModulus(int a, int b) {
     return a % b;
 }
@@ -102,9 +97,6 @@ double calculateExponent(double base, double exp) {
     return pow(base, exp);
 }
 
-// -----------------------------------------------------------------------------
-// HELPER FUNCTION
-// -----------------------------------------------------------------------------
 
 void displayMenu() {
     cout << "\n============================\n";
@@ -120,14 +112,10 @@ void displayMenu() {
     cout << "Select an operation (1-7): ";
 }
 
-// -----------------------------------------------------------------------------
-// MAIN PROGRAM
-// -----------------------------------------------------------------------------
 
 int main() {
     int choice;
     
-    // Set fixed-point notation and 2 decimal places for output
     cout << fixed << setprecision(2);
 
     while (true) {
@@ -141,10 +129,9 @@ int main() {
 
         if (choice < 1 || choice > 7) {
             cout << "Error: Invalid operation. Please choose between 1 and 7.\n";
-            continue; // Go back to the top of the loop to reprint the menu
+            continue; 
         }
 
-        // Modulus operation (Operation 5) needs integers
         if (choice == 5) {
             int num1, num2;
             cout << "Enter first number : ";
@@ -158,7 +145,6 @@ int main() {
                 cout << "Result: " << num1 << " % " << num2 << " = " << calculateModulus(num1, num2) << "\n";
             }
         } 
-        // All other operations use doubles
         else {
             double num1, num2;
             cout << "Enter first number : ";

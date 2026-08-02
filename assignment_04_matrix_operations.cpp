@@ -65,11 +65,6 @@
 #include <string>
 using namespace std;
 
-// =============================================================================
-// HELPER FUNCTIONS
-// =============================================================================
-
-// Helper function to print a matrix in a neat grid
 void printMatrix(int matrix[10][10], int rows, int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -79,7 +74,6 @@ void printMatrix(int matrix[10][10], int rows, int cols) {
     }
 }
 
-// Helper function to read matrix elements from the user
 void inputMatrix(int matrix[10][10], int rows, int cols, string name) {
     cout << "Enter elements for " << name << ":" << endl;
     for (int i = 0; i < rows; i++) {
@@ -90,15 +84,11 @@ void inputMatrix(int matrix[10][10], int rows, int cols, string name) {
     }
 }
 
-// =============================================================================
-// MATRIX OPERATIONS
-// =============================================================================
 
-// PART A — Transpose a Matrix
 void transposeMatrix(int matrix[10][10], int rows, int cols) {
     int transposed[10][10];
     
-    // Rows become columns, columns become rows
+    
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
             transposed[j][i] = matrix[i][j];
@@ -106,10 +96,9 @@ void transposeMatrix(int matrix[10][10], int rows, int cols) {
     }
     
     cout << "\nTransposed Matrix:" << endl;
-    printMatrix(transposed, cols, rows); // Note the swapped dimensions
+    printMatrix(transposed, cols, rows); 
 }
 
-// PART B — Add Two Matrices
 void addMatrices(int matA[10][10], int matB[10][10], int rows, int cols) {
     int result[10][10];
     
@@ -123,9 +112,8 @@ void addMatrices(int matA[10][10], int matB[10][10], int rows, int cols) {
     printMatrix(result, rows, cols);
 }
 
-// PART C — Multiply Two Matrices
 void multiplyMatrices(int matA[10][10], int matB[10][10], int rowsA, int colsA, int colsB) {
-    int result[10][10] = {0}; // Initialize all elements to 0
+    int result[10][10] = {0}; 
     
     for (int i = 0; i < rowsA; i++) {
         for (int j = 0; j < colsB; j++) {
@@ -139,18 +127,11 @@ void multiplyMatrices(int matA[10][10], int matB[10][10], int rowsA, int colsA, 
     printMatrix(result, rowsA, colsB);
 }
 
-// =============================================================================
-// MAIN FUNCTION
-// =============================================================================
 
 int main() {
-    // Variables for matrix sizes
     int r1, c1, r2, c2;
     int matrixA[10][10], matrixB[10][10];
 
-    // ---------------------------------------------------------
-    // PART A TEST
-    // ---------------------------------------------------------
     cout << "--- PART A: TRANSPOSE ---" << endl;
     cout << "Enter number of rows: ";
     cin >> r1;
@@ -164,9 +145,6 @@ int main() {
     
     transposeMatrix(matrixA, r1, c1);
     
-    // ---------------------------------------------------------
-    // PART B TEST
-    // ---------------------------------------------------------
     cout << "\n--- PART B: ADDITION ---" << endl;
     cout << "Enter dimensions for the two matrices to add (they must be the same)." << endl;
     cout << "Enter number of rows: ";
@@ -179,9 +157,6 @@ int main() {
     
     addMatrices(matrixA, matrixB, r2, c2);
 
-    // ---------------------------------------------------------
-    // PART C TEST
-    // ---------------------------------------------------------
     cout << "\n--- PART C: MULTIPLICATION ---" << endl;
     cout << "Matrix A dimensions:" << endl;
     cout << "Enter number of rows: ";
