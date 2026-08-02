@@ -73,3 +73,122 @@
 #include <cmath>
 using namespace std;
 
+// -----------------------------------------------------------------------------
+// ARITHMETIC FUNCTIONS
+// -----------------------------------------------------------------------------
+
+double addNumbers(double a, double b) {
+    return a + b;
+}
+
+double subtractNumbers(double a, double b) {
+    return a - b;
+}
+
+double multiplyNumbers(double a, double b) {
+    return a * b;
+}
+
+double divideNumbers(double a, double b) {
+    return a / b;
+}
+
+// Note: Modulus requires integer operands in C++
+int calculateModulus(int a, int b) {
+    return a % b;
+}
+
+double calculateExponent(double base, double exp) {
+    return pow(base, exp);
+}
+
+// -----------------------------------------------------------------------------
+// HELPER FUNCTION
+// -----------------------------------------------------------------------------
+
+void displayMenu() {
+    cout << "\n============================\n";
+    cout << "      SIMPLE CALCULATOR     \n";
+    cout << "============================\n";
+    cout << "1. Addition\n";
+    cout << "2. Subtraction\n";
+    cout << "3. Multiplication\n";
+    cout << "4. Division\n";
+    cout << "5. Modulus\n";
+    cout << "6. Exponentiation\n";
+    cout << "7. Quit\n";
+    cout << "Select an operation (1-7): ";
+}
+
+// -----------------------------------------------------------------------------
+// MAIN PROGRAM
+// -----------------------------------------------------------------------------
+
+int main() {
+    int choice;
+    
+    // Set fixed-point notation and 2 decimal places for output
+    cout << fixed << setprecision(2);
+
+    while (true) {
+        displayMenu();
+        cin >> choice;
+
+        if (choice == 7) {
+            cout << "Goodbye!\n";
+            break;
+        }
+
+        if (choice < 1 || choice > 7) {
+            cout << "Error: Invalid operation. Please choose between 1 and 7.\n";
+            continue; // Go back to the top of the loop to reprint the menu
+        }
+
+        // Modulus operation (Operation 5) needs integers
+        if (choice == 5) {
+            int num1, num2;
+            cout << "Enter first number : ";
+            cin >> num1;
+            cout << "Enter second number: ";
+            cin >> num2;
+
+            if (num2 == 0) {
+                cout << "Error: Cannot divide by zero.\n";
+            } else {
+                cout << "Result: " << num1 << " % " << num2 << " = " << calculateModulus(num1, num2) << "\n";
+            }
+        } 
+        // All other operations use doubles
+        else {
+            double num1, num2;
+            cout << "Enter first number : ";
+            cin >> num1;
+            cout << "Enter second number: ";
+            cin >> num2;
+
+            switch (choice) {
+                case 1:
+                    cout << "Result: " << num1 << " + " << num2 << " = " << addNumbers(num1, num2) << "\n";
+                    break;
+                case 2:
+                    cout << "Result: " << num1 << " - " << num2 << " = " << subtractNumbers(num1, num2) << "\n";
+                    break;
+                case 3:
+                    cout << "Result: " << num1 << " * " << num2 << " = " << multiplyNumbers(num1, num2) << "\n";
+                    break;
+                case 4:
+                    if (num2 == 0) {
+                        cout << "Error: Cannot divide by zero.\n";
+                    } else {
+                        cout << "Result: " << num1 << " / " << num2 << " = " << divideNumbers(num1, num2) << "\n";
+                    }
+                    break;
+                case 6:
+                    cout << "Result: " << num1 << " ^ " << num2 << " = " << calculateExponent(num1, num2) << "\n";
+                    break;
+            }
+        }
+    }
+
+    return 0;
+}

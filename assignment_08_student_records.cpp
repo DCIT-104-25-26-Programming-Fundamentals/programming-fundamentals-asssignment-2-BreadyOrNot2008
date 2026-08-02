@@ -83,3 +83,159 @@
 #include <iomanip>
 using namespace std;
 
+// -----------------------------------------------------------------------------
+// STRUCT DEFINITION
+// -----------------------------------------------------------------------------
+struct Student {
+    string name;
+    int id;
+    vector<double> scores;
+};
+
+// -----------------------------------------------------------------------------
+// HELPER FUNCTIONS
+// -----------------------------------------------------------------------------
+
+// Reusable function to calculate the average of a vector of scores
+double getAverage(const vector<double>& scores) {
+    if (scores.empty()) return 0.0;
+    
+    double sum = 0.0;
+    for (size_t i = 0; i < scores.size(); i++) {
+        sum += scores[i];
+    }
+    return sum / scores.size();
+}
+
+// Function to display the main menu
+void showMenu() {
+    cout << "\n================================" << endl;
+    cout << "   STUDENT RECORD SYSTEM MENU" << endl;
+    cout << "================================" << endl;
+    cout << "1. Add student" << endl;
+    cout << "2. Display all students" << endl;
+    cout << "3. Calculate average score" << endl;
+    cout << "4. Quit" << endl;
+    cout << "Enter your choice (1-4): ";
+}
+
+// -----------------------------------------------------------------------------
+// FEATURE FUNCTIONS
+// -----------------------------------------------------------------------------
+
+// 1. Add a Student
+void addStudent(vector<Student>& students) {
+    Student newStudent;
+    int numScores;
+    double score;
+
+    // Clear the leftover newline from the previous cin before reading the string
+    cin.ignore(10000, '\n');
+    
+    cout << "Student name: ";
+    getline(cin, newStudent.name);
+    
+    cout << "Student ID: ";
+    cin >> newStudent.id;
+    
+    cout << "How many scores? ";
+    cin >> numScores;
+    
+    for (int i = 0; i < numScores; i++) {
+        cout << "Enter score " << (i + 1) << ": ";
+        cin >> score;
+        newStudent.scores.push_back(score);
+    }
+    
+    students.push_back(newStudent);
+    cout << "Student \"" << newStudent.name << "\" added successfully." << endl;
+}
+
+// 2. Display All Students
+void displayStudents(const vector<Student>& students) {
+    if (students.empty()) {
+        cout << "No students have been added yet." << endl;
+        return;
+    }
+    
+    cout << "\n--- All Student Records ---" << endl;
+    for (size_t i = 0; i < students.size(); i++) {
+        cout << "Name: " << students[i].name 
+             << " | ID: " << students[i].id 
+             << " | Scores: ";
+             
+        for (size_t j = 0; j < students[i].scores.size(); j++) {
+            cout << students[i].scores[j] << " ";
+        }
+        
+        // Print average rounded to 2 decimal places
+        cout << "| Average: " << fixed << setprecision(2) 
+             << getAverage(students[i].scores) << endl;
+    }
+}
+
+// 3. Calculate Average Score for a Specific Student
+void calculateSpecificAverage(const vector<Student>& students) {
+    if (students.empty()) {
+        cout << "No students have been added yet." << endl;
+        return;
+    }
+
+    int searchId;
+    cout << "Enter student ID: ";
+    cin >> searchId;
+    
+    // Search the vector for the matching ID
+    for (size_t i = 0; i < students.size(); i++) {
+        if (students[i].id == searchId) {
+            cout << students[i].name << "'s average score: " 
+                 << fixed << setprecision(2) << getAverage(students[i].scores) << endl;
+            return; // Exit the function since we found the student
+        }
+    }
+    
+    // If the loop finishes without returning, the ID wasn't found
+    cout << "Error: Student ID " << searchId << " not found." << endl;
+}
+
+// -----------------------------------------------------------------------------
+// MAIN FUNCTION
+// -----------------------------------------------------------------------------
+int main() {
+    vector<Student> students;
+    int choice = 0;
+    
+    while (true) {
+        showMenu();
+        cin >> choice;
+        
+        // Handle invalid character input (like typing a letter instead of a number)
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "\nInvalid input! Please enter a number from 1 to 4." << endl;
+            continue;
+        }
+        
+        cout << endl; // Formatting space
+        
+        if (choice == 1) {
+            addStudent(students);
+        } 
+        else if (choice == 2) {
+            displayStudents(students);
+        } 
+        else if (choice == 3) {
+            calculateSpecificAverage(students);
+        } 
+        else if (choice == 4) {
+            cout << "Goodbye!" << endl;
+            break;
+        } 
+        else {
+            cout << "Invalid choice. Please pick a number from 1 to 4." << endl;
+        }
+    }
+    
+    return 0;
+}
